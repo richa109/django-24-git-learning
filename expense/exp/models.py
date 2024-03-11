@@ -1,0 +1,76 @@
+from user.models import User
+from django.db import models
+from django.utils.timezone import now
+
+"""class Category(models.Model):
+    categoryname = models.CharField(max_length=100)
+    
+    class Meta:
+        db_table = 'Category'
+
+    def __str__(self):
+        return self.categoryname"""
+
+"""class Subcategory(models.Model):
+    subcategoryname = models.CharField(max_length=100)
+    catname = models.ForeignKey(Category, on_delete=models.CASCADE)
+    
+    class Meta:
+        db_table = 'Subcategory'
+
+    def __str__(self):
+        return self.subcategoryname"""
+
+status = (('cleared', 'cleared'), ('uncleared', 'uncleared'), ('void', 'void'))
+transaction_type = (('expense', 'expense'), ('income', 'income'))
+
+class Expense(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    amount = models.FloatField()
+    expDateTime = models.DateField()
+    category = models.CharField()
+    subCategory = models.CharField()
+    transaction_type = models.CharField(choices=transaction_type, max_length=50)
+    status = models.CharField(choices=status, max_length=30)
+    description = models.CharField(max_length=100)
+    
+    class Meta:
+        db_table = 'Expense'
+
+    def __str__(self):
+        return self.status
+    
+    
+typename=(('creditcard','CreditCard'),('cash','Cash'),('cheque','cheque'))
+
+class AccountType(models.Model):
+    # accounttype_id = models.IntegerField(primary_key=True)
+    type_name=models.CharField(max_length=100)
+    class Meta:
+        db_table="accounttype"
+    def __str__(self):
+        return self.type_name
+    
+
+class CurrencyType(models.Model):
+    # currencytype_id = models.IntegerField(primary_key=True)
+    currency=models.CharField(max_length=100)
+    class Meta:
+        db_table="currencytype"
+    def __str__(self):
+        return self.currency
+    
+
+    
+class Account(models.Model):
+    # account_id = models.IntegerField(primary_key=True)
+    created_at = models.DateTimeField(null=True)
+    balance=models.FloatField()
+    currencytype=models.ForeignKey(CurrencyType,on_delete=models.CASCADE)
+    # default
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    accounttype = models.ForeignKey(AccountType, on_delete=models.CASCADE)
+    class Meta:
+        db_table="account"
+    
+    

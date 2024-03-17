@@ -15,9 +15,9 @@ path('login/',UserLoginView.as_view(),name='login'),
 #  path('logout/',LogoutView.as_view(next_page='user/user_dashboard'),name='logout'),
 path("logout/",views.logout_view,name="logout"),
 path('user_dashboard/', UserDashboardView.as_view(), name='user_dashboard'),
+
 # path('forgot/',views.forgot,name='forgot'),
 # path('chart/',views.chart,name='chart'),
 # path('safe/',views.safe,name='safe'),
-
-
+ 
  ]

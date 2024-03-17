@@ -48,15 +48,18 @@
 
     <!-- Page CSS -->
     <!-- Page CSS -->
-   <!-- Helpers -->
-   <script src="{% static '/assets/vendor/js/helpers.js'%}"></script>
+    <!-- Helpers -->
+    <script src="{% static '/assets/vendor/js/helpers.js'%}"></script>
 
-   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-   <script src="{% static '/assets/js/config.js'%}"></script>
-  <!-- Core JS -->
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    {% comment %}
+    <script src="{% static '/assets/js/config.js'%}"></script>
+    {% endcomment %}
+    <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    {% comment %} <script src="{% static '/assets/vendor/libs/jquery/jquery.js'%}"></script>
+    {% comment %}
+    <script src="{% static '/assets/vendor/libs/jquery/jquery.js'%}"></script>
     <script src="{% static '/assets/vendor/libs/popper/popper.js'%}"></script>
     <script src="{% static '/assets/vendor/js/bootstrap.js'%}"></script>
     <script src="{% static '/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'%}"></script>
@@ -71,20 +74,23 @@
     <script src="{% static '/assets/js/main.js'%}"></script>
 
     <!-- Page JS -->
-    <script src="{% static '/assets/js/dashboards-analytics.js'%}"></script> {% endcomment %}
-
+    <script src="{% static '/assets/js/dashboards-analytics.js'%}"></script>
+    {% endcomment %}
   </head>
 
   <body>
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-      {% block navbar %} {% include './Navbar.html' %} {% endblock navbar %} 
-
-        {% comment %} <nav
+        {% block navbar %} {% include './Navbar.html' %} {% endblock navbar %}
+        {% comment %}
+        <nav
           class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-          id="layout-navbar">
-          {% block searchbar %} {% include '../search.html' %} {% endblock searchbar %}
-        </nav> {% endcomment %}
+          id="layout-navbar"
+        >
+          {% block searchbar %} {% include '../search.html' %} {% endblock
+          searchbar %}
+        </nav>
+        {% endcomment %}
 
         <div class="content-wrapper">
           <div class="container-xxl flex-grow-1 container-p-y">
@@ -93,5 +99,5 @@
         </div>
       </div>
     </div>
- </body>
+  </body>
 </html>

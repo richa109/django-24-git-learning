@@ -19,7 +19,7 @@
                 {% csrf_token %}
               <div class="mb-3">
                  <label class="form-label" for="basic-icon-default-fullname">Create Expense</label> 
-                 {{form.user | as_crispy_field}}
+                {{request.user}}
                  {{form.category | as_crispy_field}}   
                  {{form.subCategory | as_crispy_field}}
                  <div class="mb-2"> 
@@ -31,6 +31,7 @@
                  {{form.transaction_type | as_crispy_field}}
                  {{form.status | as_crispy_field}}  
                  {{form.description| as_crispy_field}}  
+                 {{form.goal | as_crispy_field}}
               </div>
               <input type="submit" class="btn btn-primary" value="Submit"/>
             </form>

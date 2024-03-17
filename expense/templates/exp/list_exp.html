@@ -25,21 +25,23 @@
         <table class="table">
           <thead>
             <tr>
-              
+             
               <th>Category</th>
               <th>SubCategory</th>
               <th>Amount</th>
               <th>ExpDateTime</th>
               <th>Transaction</th>
               <th>Description</th>
+              
               <th>Status</th>
+              <th>Goal</th>
               <th class='text-center'>Actions</th>
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
             {% for expense in list_exp %}
             <tr>
-              
+            
               <td>{{ expense.category }}</td>
               <td>{{ expense.subCategory }}</td>
               <td>{{ expense.amount }}</td>
@@ -51,6 +53,8 @@
                   >{{ expense.status }}</span
                 >
               </td>
+              <td>{{expense.goal__goalname}}</td>
+
              
               <td>
                 <div class="dropdown">

@@ -4,7 +4,6 @@ from.views import *
 from.import views
 
 urlpatterns = [
-    
     path('navbar/',views.navbar,name='navbar'),
     path('index/',views.index,name='index'),
     path('home/',views.home,name='home'),
@@ -19,7 +18,12 @@ urlpatterns = [
     path('list1_exp/',AccountListView.as_view(),name='list1_exp'),
     path('update_acc/<int:pk>/',AccountUpdateView.as_view(),name='update_acc'),
     path('detail_acc/<int:pk>/',AccountDetailView.as_view(),name='detail_acc'),
-     path('delete_acc/<int:pk>/',AccountDeleteView.as_view(),name='delete_acc'),
+    path('delete_acc/<int:pk>/',AccountDeleteView.as_view(),name='delete_acc'),
+    path("chart/", views.bar_chart, name="chart"),
+  # URL for general chart
+    # path("user_chart/", views.user_specific_chart, name="user_chart"),
+
+
     
     
 ]

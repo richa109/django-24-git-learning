@@ -43,9 +43,7 @@ class UserRegisterView(CreateView):
 
 
 # views.py
-
-
-
+@method_decorator(login_required, name='dispatch')
 class UserLoginView(LoginView):
     template_name = 'user/login.html'
 
@@ -255,6 +253,10 @@ def chart1(request):
         return render(request,'user/chart.html', {"chart_data": chart_data,  "expenses": expenses, "user_income": user_income, "user_expenses": user_expenses, "safe_amount": user_income-user_expenses})
     return render(request,'user/chart.html', {"chart_data": [0, 0, 0],})
 
+
+
+
 def forgot(request):
        return render(request,'user/forgot.html')
    
+

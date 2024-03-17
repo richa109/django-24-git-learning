@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <link
       rel="icon"
       type="image/x-icon"
@@ -58,6 +59,11 @@
    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
    <script src="{% static '/assets/js/config.js'%}"></script>
 
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+ 
+
+   
   </head>
 
   <body>
@@ -112,7 +118,7 @@
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow"  data-bs-toggle="dropdown">
               <div class="avatar avatar-online">
-                <img src= "{% static '' %}"  alt="" class="rounded-circle">
+                <img src="{{ user.pic.url }}" alt="" class="w-px-40 h-auto rounded-circle">
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -123,7 +129,7 @@
                   <div class="d-flex">
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online"> 
-                        <img src="{% static ''%}" alt="" class=" rounded-circle"> 
+                        <img src="{{ user.pic.url }}" alt="" class="w-px-40 h-auto rounded-circle">
                       </div>
                     </div>
                     <div class="flex-grow-1">
@@ -403,6 +409,11 @@
         </div>  
 
 
+        
+
+        
+
+
     {% comment %} <div class="income-expense-wrapper">
       <div class="income-block">
 
@@ -459,42 +470,42 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   {% comment %} <p></p>  {% endcomment %}
 <!-- Total Revenue -->
-   <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+   {% comment %} <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
     <div class="card">
-      <div class="row row-bordered g-0">
+      <div class="row row-bordered g-0"> {% endcomment %}
         {% comment %} <div class="col-md-8"> {% endcomment %}
-          <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
+          {% comment %} <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5> {% endcomment %}
           {% comment %} <div id="totalRevenueChart" class="px-2"></div> {% endcomment %}
         {% comment %} </div>  {% endcomment %}
-        <div class="col-md-4">
+        {% comment %} <div class="col-md-4">
           <div class="card-body">
             <div class="text-center">
-              <div class="dropdown">
-                <button
+              <div class="dropdown"> {% endcomment %}
+                {% comment %} <button
                   class="btn btn-sm btn-outline-primary dropdown-toggle"
                   type="button"
-                  id="growthReportId"
+                  id="growthReportId" {% endcomment %}
                   {% comment %} id="{{ user_income }}" {% endcomment %}
-                  data-bs-toggle="dropdown"
+                  {% comment %} data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                >
-                  2023
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                > {% endcomment %}
+                  {% comment %} 2024
+                </button> {% endcomment %}
+                {% comment %} <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
                   {% comment %} <div class="dropdown-menu dropdown-menu-end" aria-labelledby="{{ user_income }}"> {% endcomment %}
-                  <a class="dropdown-item" href="javascript:void(0);">2023</a>
-                  <a class="dropdown-item" href="javascript:void(0);">2024</a>
+                  {% comment %} <a class="dropdown-item" href="javascript:void(0);">2024</a> {% endcomment %} 
+                  {% comment %} <a class="dropdown-item" href="javascript:void(0);">2024</a> {% endcomment %}
                   {% comment %} <a class="dropdown-item" href="javascript:void(0);">2019</a> {% endcomment %}
-                </div>
+                {% comment %} </div>
               </div>
             </div>
           </div>
-          <div id="growthChart"></div>
+          <div id="growthChart"></div> {% endcomment %}
           {% comment %} <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div> {% endcomment %}
 
-          <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-            <div class="d-flex">
+          {% comment %} <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between"> {% endcomment %}
+            {% comment %} <div class="d-flex">
               <div class="me-2">
                 <span class="badge bg-label-primary p-2"><i class='bx bx-rupee'></i></span>
               </div>
@@ -502,8 +513,8 @@
                 <small>2023</small>
                 <h6 class="mb-0">{{ user_expenses }}</h6>
               </div>
-            </div>
-            <div class="d-flex">
+            </div> {% endcomment %}
+            {% comment %} <div class="d-flex">
               <div class="me-2">
                 <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
               </div>
@@ -517,37 +528,36 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
   <!--/ Total Revenue -->
 
-  <p></p>
+  {% comment %} <p></p> {% endcomment %}
   
   <!-- Expense Overview -->
   
 
-  <div class="col-md-6 col-lg-4 order-1 mb-4">
+  {% comment %} <div class="col-md-6 col-lg-4 order-1 mb-4">
     {% comment %} <div class="card"> {% endcomment %}
-    <div class="card h-100">
+    {% comment %} <div class="card h-100">
       <div class="card-header">
-        <ul class="nav nav-pills" role="tablist">
-          <li class="nav-item">
-            <button
-              type="button"
+        <ul class="nav nav-pills" role="tablist"> {% endcomment %}
+          {% comment %} <li class="nav-item"> {% endcomment %} 
+              {% comment %} type="button"
               class="nav-link active"
               role="tab"
               data-bs-toggle="tab"
               data-bs-target="#navs-tabs-line-card-income"
               aria-controls="navs-tabs-line-card-income"
-              aria-selected="true"
-            >
+              aria-selected="true" {% endcomment %}
+            {% comment %} >
           Income
             </button>
           </li>
           <li class="nav-item">
             <button type="button" class="nav-link" role="tab">Expenses</button>
             <a href="{% url 'create_exp' %}"> 
-          </li>
-          <li class="nav-item">
+          </li> {% endcomment %}
+          {% comment %} <li class="nav-item">
             <button type="button" class="nav-link" role="tab">Profit</button>
           </li>
         </ul>
@@ -555,8 +565,8 @@
       <div class="card-body px-0">
         <div class="tab-content p-0">
           <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
-            <div class="d-flex p-4 pt-3">
-              <div class="avatar flex-shrink-0 me-3">
+            <div class="d-flex p-4 pt-3"> {% endcomment %}
+              {% comment %} <div class="avatar flex-shrink-0 me-3">
                 <img src="{% static '/assets/img/icons/unicons/wallet.png'%}" alt="User" />
               </div>
               <div>
@@ -567,25 +577,25 @@
                     <i class="bx bx-chevron-up"></i>
                     42.9%
                   </small> {% endcomment %}
-                </div>
-              </div>
+                {% comment %} </div>
+              </div> 
             </div>
             <div id="incomeChart"></div>
             <div class="d-flex justify-content-center pt-4 gap-2">
               <div class="flex-shrink-0">
-                <div id="expensesOfWeek"></div>
-              </div>
-              <div>
+                <div id="expensesOfWeek"></div> {% endcomment %}
+              {% comment %} </div>
+              <div> {% endcomment %}
                 {% comment %} <p class="mb-n1 mt-1">Expenses This Week</p> {% endcomment %}
                 {% comment %} <small class="text-muted">$39 less than last week</small> {% endcomment %}
                 {% comment %} <small class="text-muted">{{expense.category__categoryname}}</small> {% endcomment %}
-              </div>
+              {% comment %} </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div>   {% endcomment %}
    
 
   <!--/ Expense Overview -->
@@ -642,13 +652,7 @@
     <script src="{% static '/assets/js/main.js'%}"></script>
 
     <!-- Page JS -->
-    <script src="{% static '/assets/js/dashboards-analytics.js'%}"></script>
-
-
-
-
     
-
 
 
 
@@ -774,13 +778,66 @@
     </div> {% endcomment %}
     <!--/ Transactions -->
 
-
-
-
    
 
-    
-     {% endblock content %}  
+    <div class="card text-center">
+      <h5 class="card-header">Expense Chart</h5>
+      <div>
+          <!-- Adjust canvas size as needed -->
+          <canvas id="barchart" width="400" height="200"></canvas>
+      </div>
+  
+      <script>
+          // Get canvas context
+          const ctx = document.getElementById("barchart").getContext("2d");
+  
+          // Initialize Chart.js chart
+          new Chart(ctx, {
+              type: "bar",
+              data: {
+                  labels: {{ labels | safe }},
+                  datasets: [
+                      {
+                          label: "Amount",
+                          data: {{ data | safe }},
+                          backgroundColor: [
+                              "rgba(75, 192, 192, 0.2)",
+                              "rgba(255, 99, 132, 0.2)",
+                              "rgba(255, 255, 0, 0.2)"
+                          ],
+                          borderColor: [
+                              "rgba(75, 192, 192, 1)",
+                              "rgba(255, 99, 132, 1)",
+                              "rgba(255, 255, 0, 1)"
+                          ],
+                          borderWidth: 1,
+                          barThickness: 50 // Adjust the bar thickness as needed
+                      }
+                  ]
+              },
+              options: {
+                  responsive: true,
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  },
+                  plugins: {
+                      legend: {
+                          display: true,
+                          position: "top"
+                      },
+                      datalabels: {
+                          display: true
+                      }
+                  }
+              }
+          });
+      </script>
+  </div>
+  {% endblock content %}
+  </body>
+  </html>
     {% comment %} <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <div class="content-wrapper">
@@ -799,5 +856,3 @@
 
 
     
- </body>
-</html>

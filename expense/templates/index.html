@@ -50,36 +50,38 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Home Page</h1>
+        {% comment %} <h1>Home Page</h1> {% endcomment %}
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
+          {% comment %} <li><a href="index.html" class="active">Home</a></li> {% endcomment %}
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href=" {% url 'userregister' %}">Register</a></li>
+          <li><a href=" {% url 'login' %}">Log In</a></li>
+          {% comment %} <li><a href="pricing.html">Pricing</a></li> {% endcomment %}
+          {% comment %} <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a> {% endcomment %}
+            {% comment %} <ul>
               <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
+              {% comment %} <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a> {% endcomment %}
+                {% comment %} <ul>
                   <li><a href="#">Deep Drop Down 1</a></li>
                   <li><a href="#">Deep Drop Down 2</a></li>
                   <li><a href="#">Deep Drop Down 3</a></li>
                   <li><a href="#">Deep Drop Down 4</a></li>
                   <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
+                </ul> {% endcomment %}
+              {% comment %} </li>
               <li><a href="#">Drop Down 2</a></li>
               <li><a href="#">Drop Down 3</a></li>
               <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li>
+            </ul>  {% endcomment %}
+          {% comment %} </li> {% endcomment %}
+          <li><a href="#contact">Contact Us</a></li>
+          {% comment %} <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li> {% endcomment %}
         </ul>
       </nav><!-- .navbar -->
 
@@ -146,100 +148,69 @@
       </div>
     </div>
   </section><!-- End Hero Section -->
+  
 
-  <main id="main">
-
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-             <div class="icon flex-shrink-0"> 
-               <i class="fa-solid fa-cart-flatbed"></i> </div> 
-            <div>
-              <h4 class="title">Register</h4>
-              {% comment %} <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> {% endcomment %}
-              <a href="{% url 'userregister' %}" class="readmore stretched-link">
-                {% comment %} <span>Learn More</span> {% endcomment %}
-                {% comment %} <i class="bi bi-arrow-right"></i>{% endcomment %}
-              </a>  
-            </div>
-          </div>
-          <!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon flex-shrink-0"><i class="fa-solid fa-truck"></i></div>
-            <div>
-              <h4 class="title">Login</h4>
-              {% comment %} <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p> {% endcomment %}
-              <a href="{% url 'login' %}" class="readmore stretched-link">
-                {% comment %} <span>Learn More</span> {% endcomment %}
-                {% comment %} <i class="bi bi-arrow-right"></i> {% endcomment %}
-              </a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="fa-solid fa-truck-ramp-box"></i></div>
-            <div>
-              <h4 class="title">Shinchan</h4>
-              {% comment %} <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p> {% endcomment %}
-              <a href="service-details.html" class="readmore stretched-link">
-                {% comment %} <span>Learn More</span>
-                <i class="bi bi-arrow-right"></i> {% endcomment %}
-              </a> 
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-    </section><!-- End Featured Services Section -->
+  <!-- End Featured Services Section -->
 
     <!-- ======= About Us Section ======= -->
+    
     <section id="about" class="about pt-0">
       <div class="container" data-aos="fade-up">
 
-        <div class="row gy-4">
-          <div class="col-lg-6 position-relative align-self-start order-lg-last order-first"> 
-              <img src="{% static './assets1/img/about1.jpg' %}" class="img-fluid enlarge-image" alt="">
-              {% comment %} <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a> {% endcomment %}
-             
-               
-            
-
-          </div>   
+        <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-6 position-relative align-self-start">
+                  <img src="{% static 'assets1/img/about1.jpg' %}" class="img-fluid enlarge-image" alt="">
+                  {% comment %} <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a> {% endcomment %}
+              </div>
+          </div>
       </div>
       
+      
           <div class="col-lg-6 content order-last  order-lg-first">
-            <h3>About Us</h3>
+            <h3 id="about"> About </h3>
             <p>
-              Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis veritatis asperiores placeat.
+              Expense management is a bookkeeping system for controlling, tracking, and processing employee expense reimbursements and employee-related corporate credit card transactions. Specialized online and mobile app expense management software integrates with accounting software and ERP systems.
             </p>
+            <p> Expense management processes include: </p>
             <ul>
               <li data-aos="fade-up" data-aos-delay="100">
                 <i class="bi bi-diagram-3"></i>
                 <div>
-                  <h5>Ullamco laboris nisi ut aliquip consequat</h5>
+                  <h5>Establishing company policies</h5>
                   <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
                 </div>
               </li>
               <li data-aos="fade-up" data-aos-delay="200">
                 <i class="bi bi-fullscreen-exit"></i>
                 <div>
-                  <h5>Magnam soluta odio exercitationem reprehenderi</h5>
+                  <h5>Issuing corporate credit cards and virtual cards to employees for routine purchases</h5>
                   <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
                 </div>
               </li>
               <li data-aos="fade-up" data-aos-delay="300">
                 <i class="bi bi-broadcast"></i>
                 <div>
-                  <h5>Voluptatem et qui exercitationem</h5>
+                  <h5>Having employees submit receipts</h5>
                   <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
                 </div>
               </li>
+
+              <li data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-broadcast"></i>
+                <div>
+                  <h5>Controlling expenditures and the reporting process</h5>
+                  <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
+                </div>
+              </li>
+              <li data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-broadcast"></i>
+                <div>
+                  <h5>Making payments to reimburse employees for approved expenses</h5>
+                  <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
+                </div>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -253,7 +224,7 @@
 
         <div class="section-header">
           <span>Our Services</span>
-          <h2>Our Services</h2>
+          <h2 id="services">Our Services</h2>
 
         </div>
 
@@ -340,14 +311,9 @@
     {% comment %} </section><!-- End Call To Action Section --> {% endcomment %}
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-      <div class="container">
-
-        <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-
-          <div class="col-md-5">
+          
             <img src="{% static './assets1/img/features1.jpg' %}" class="img-fluid" alt="">
-          </div>
+          
           <div class="col-md-7">
             <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
             <p class="fst-italic">
@@ -480,8 +446,15 @@
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
-      <div class="container">
+      
 
+      
+      <div class="container">
+        <div class="section-header">
+          <span>Contact US</span>
+          <h2 id="contact">Contact Us </h2>
+  
+        </div> 
         <div class="slides-1 swiper" data-aos="fade-up">
           <div class="swiper-wrapper">
 

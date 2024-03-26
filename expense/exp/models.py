@@ -80,6 +80,8 @@ class Account(models.Model):
     # default
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     accounttype = models.ForeignKey(AccountType, on_delete=models.CASCADE)
+    income = models.FloatField(null=True)
+    day = models.DateField(null=True)
     class Meta:
         db_table="account"
     

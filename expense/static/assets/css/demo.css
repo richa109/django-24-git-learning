@@ -76,6 +76,10 @@
   text-align: left !important;
   direction: ltr !important;
 }
+.hide-for-pdf {
+  display: none !important;
+}
+
 
 [dir='rtl'] .rtl-only {
   display: block !important;

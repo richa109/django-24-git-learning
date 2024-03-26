@@ -193,41 +193,49 @@ crispy_forms_tags %} {% endcomment %}
             <div class="col-md-6 col-lg-4 mb-3">
               <div class="card h-100">
                 <img class="card-img-top" src="{% static './assets/img/elements/transportation3.jpg' %}" alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a>
+                <div class="card-body text-center">
+                  <h5 class="card-title">User Details</h5>
+                  <p class="card-text">NAME:- {{exp_detail.user}}</p> 
+                  <p class="card-text">SALARY:-  {{user.salary}}</p> 
+                  <p class="card-text">AGE:-  {{user.age}}</p> 
+                  <p class="card-text">AMOUNT:-  {{exp_detail.amount}}</p> 
+          
+          
+                  {% comment %} <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a> {% endcomment %}
                 </div>
               </div>
             </div>
+
+            <div class="col-md-6 col-lg-4 mb-3">
+           
+              <img class="card-img-top" src="{% static './assets/img/elements/loan.jpg' %}" alt="Card image cap" /> 
+               <div class="card-body">
+               
+                 
+               </div>
+            
+           </div>
+
             <div class="col-md-6 col-lg-4 mb-3">
               <div class="card h-100">
                 <img class="card-img-top" src="{% static './assets/img/elements/doctor.jpg' %}" alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                <div class="card-body text-center">
+                  <h5 class="card-title">User's Expense Details</h5>
                   <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    <p class="card-text"> HELLO {{exp_detail.user}} ....</p>
+                    <p class="card-text"> TOTAL AMOUNT :- {{exp_detail.amount}}</p> 
+                    <p class="card-text">  CATEGORY :- {{exp_detail.category}}</p>
+                    <p class="card-text"> SUBCATEGORY  :- {{exp_detail.subCategory}} </p>
+                    <p class="card-text"> GOAL: {{ exp_detail.goal__goalname }} </p>
+                    <p class="card-text">  DESCRIPTION FOR EXPENSE:- {{exp_detail.description }} </p>
                   </p>
-                  <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a>
+                  <p class="card-text"> <a href="{% url 'exp_list' %}" class="btn btn-outline-primary">EXPENSE LIST</a> </p>
+                  <p class="card-text">   <a href="{% url 'chart' %}" class="btn btn-outline-primary"> EXPENSE CHART</a> </p>
                 </div>
               </div>
             </div>
           
-            <div class="col-md-6 col-lg-4 mb-3">
-              <div class="card h-100">
-                <img class="card-img-top" src="{% static './assets/img/elements/loan.jpg' %}" alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-          </div>
+             
           
           <div class=" mb-5">
             {% comment %} <div class="col-15"></div> <!-- Add horizontal space here --> {% endcomment %}
@@ -236,33 +244,27 @@ crispy_forms_tags %} {% endcomment %}
           <div class="row mb-3">
             <div class="col-md-6 col-lg-4 mb-3">
               <div class="card h-100">
-                {% comment %} <img class="card-img-top" src="../assets/img/elements/2.jpg" alt="Card image cap" /> {% endcomment %}
+                 <img class="card-img-top" src="{% static './assets/img/elements/pay.png' %}" alt="Card image cap" /> 
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a>
+                
+
                 </div>
               </div>
             </div>
           
             <div class="col-md-6 col-lg-4 mb-3">
               <div class="card h-100">
-                {% comment %} <img class="card-img-top" src="../assets/img/elements/2.jpg" alt="Card image cap" /> {% endcomment %}
+               <img class="card-img-top" src="{% static './assets/img/elements/nage.png' %}" alt="Card image cap"  /> 
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                  </p>
-                  <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a>
+                
+                  
                 </div>
               </div>
             </div>
           
             <div class="col-md-6 col-lg-4 mb-2">
               <div class="card h-100">
-                 <img class="card-img-top" src="{% static './assets/img/elements/download1.png' %}" alt="Card image cap" /> 
+                 <img class="card-img-top" src="{% static './assets/img/elements/images.png' %}" alt="Card image cap" /> 
                 {% comment %} <div class="card-body">
                   <h5 class="card-title">Card title</h5>
                   <p class="card-text">

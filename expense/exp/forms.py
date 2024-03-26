@@ -1,6 +1,7 @@
 from django import forms
 from.models import Expense
 from .models import Account
+
 # from user.models import User
 # class ExcludeFieldMixin:
 #     """
@@ -37,8 +38,15 @@ class ExpCreationForm( forms.ModelForm):
 class AccountCreationForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['user']
+        
         
         widgets = {
             'created_at': forms.DateInput(attrs={'type': 'date'}),
+            'day': forms.DateInput(attrs={'type': 'date'}),
         }
+        
+    # class PDFUploadForm(forms.Form):
+    #     pdf_file = forms.FileField()
+    

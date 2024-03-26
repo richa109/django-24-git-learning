@@ -57,10 +57,10 @@
 
    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-   <script src="{% static '/assets/js/config.js'%}"></script>
 
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+   <script src="{% static '/assets/js/config.js'%}"></script>
+   
+
  
 
    
@@ -79,8 +79,9 @@
         <!-- Search -->
         <div class="navbar-nav align-items-center">
           <div class="nav-item d-flex align-items-center">
-            <i class="bx bx-search fs-4 lh-0"></i>
-            <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
+             <i class="bx bx-search fs-4 lh-0"></i> 
+            <input type="text" class="form-control border-0 shadow-none"  placeholder="Search..." aria-label="Search..." >
+            
           </div>
         
         <script>
@@ -148,19 +149,19 @@
                   <span class="align-middle">login</span>
                 </a>
               </li>
-              <li>
+              {% comment %} <li>
                 <a class="dropdown-item" href="#">
                   <i class="bx bx-cog me-2"></i>
                   <span class="align-middle">Settings</span>
                 </a>
-              </li>
+              </li> {% endcomment %}
               <li>
                 {% comment %} <a class="dropdown-item" href="{% url 'safe' %}"> {% endcomment %}
-                  <span class="d-flex align-items-center align-middle">
+                  {% comment %} <span class="d-flex align-items-center align-middle">
                     <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
                     <span class="flex-grow-1 align-middle">Billing</span>
                     <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">1</span>
-                  </span>
+                  </span> {% endcomment %}
                 </a>
               </li>
               <li>
@@ -172,6 +173,12 @@
                   <span class="align-middle">Log Out</span>
                 </a>
               </li>
+              {% comment %} <li>
+                <a class="dropdown-item" href="{% url 'login' %}">
+                  <i class="bx bx-power-off me-2"></i>
+                  <span class="align-middle">Sign Out</span>
+                </a>
+              </li> {% endcomment %}
             </ul>
           </li>
           <!--/ User -->
@@ -780,7 +787,7 @@
 
    
 
-    <div class="card text-center">
+    {% comment %} <div class="card text-center">
       <h5 class="card-header">Expense Chart</h5>
       <div>
           <!-- Adjust canvas size as needed -->
@@ -837,7 +844,64 @@
   </div>
   {% endblock content %}
   </body>
-  </html>
+  </html> {% endcomment %}
+
+  <div class="card text-center">
+    <h5 class="card-header"><u><strong>Expense Chart</strong></u></h5>
+    <div>
+        <!-- Adjust canvas size as needed -->
+        <canvas id="barchart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<script>
+    // Get canvas context
+    const ctx = document.getElementById("barchart").getContext("2d");
+
+    // Initialize Chart.js chart
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: {{ labels | safe }},
+            datasets: [{
+                label: "Amount",
+                data: {{ data | safe }},
+                backgroundColor: [
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(255, 255, 0, 0.2)"
+                ],
+                borderColor: [
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(255, 255, 0, 1)"
+                ],
+                borderWidth: 1,
+                barThickness: 50 // Adjust the bar thickness as needed
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: "top"
+                },
+                datalabels: {
+                    display: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock content %}
+</body>
+</html>
     {% comment %} <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <div class="content-wrapper">

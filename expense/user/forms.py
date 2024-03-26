@@ -18,4 +18,6 @@ class UserRegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
-    
+
+class PasswordResetForm(forms.Form):
+    email = forms.EmailField()

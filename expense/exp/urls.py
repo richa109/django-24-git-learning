@@ -21,7 +21,11 @@ urlpatterns = [
     path('detail_acc/<int:pk>/',AccountDetailView.as_view(),name='detail_acc'),
     path('delete_acc/<int:pk>/',AccountDeleteView.as_view(),name='delete_acc'),
     path("chart/", views.bar_chart_expense, name="chart"),
-    path("receipt/",ReceiptListView.as_view(), name="receipt")
+    path("receipt/",ReceiptListView.as_view(), name="receipt"),
+     path('open_file/<int:expense_id>/', views.open_file, name='open_file'),
+    # path("receipt_list/", UploadListView.as_view(), name="receipt_list")
+   
+    # path('accounts/', include('django.contrib.auth.urls')),
   # URL for general chart
     # path("user_chart/", views.user_specific_chart, name="user_chart"),
 

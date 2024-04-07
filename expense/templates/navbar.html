@@ -1,6 +1,27 @@
 {% load static %}
 <html lang="en">
   <head>
+    <style>
+    .menu-link.btn {
+        border: 1px solid transparent; /* Add transparent border */
+        background-color: transparent; /* Set background color to transparent */
+        transition: background-color 0.3s ease; /* Add transition effect */
+        margin-right: 10px; /* Add margin between buttons */
+    }
+
+    .menu-link.btn:hover {
+        background-color: green; /* Change background color on hover */
+        color: white; /* Change text color on hover */
+    }
+
+    .register-button,
+    .login-button,
+    .logout-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
   </head>
   <body>
@@ -119,8 +140,8 @@
 
           <li class="menu-item active">
              <a href="{% url 'create_exp' %}" class="menu-link"> 
-               <i class="menu-icon tf-icons bx bx-home-circle"></i> 
-              {% comment %} <i class='bx bx-rupee'></i> {% endcomment %}
+               {% comment %} <i class="menu-icon tf-icons bx bx-home-circle"></i>  {% endcomment %}
+             <i class='bx bx-rupee'></i> &nbsp;&nbsp;&nbsp;
               {% comment %} <i class='bx bx-plus'></i> {% endcomment %}
               <div data-i18n="Analytics">ADD EXPENSE</div>
             </a>
@@ -176,8 +197,9 @@
               {% comment %} <i class="menu-icon tf-icons bx bx-home-circle"></i> {% endcomment %}
               <i class="wallet-alt"></i>
               {% comment %} <box-icon name='wallet-alt'></box-icon> {% endcomment %}
-              <i class="menu-icon tf-icons bx bx-detail"></i>
-              <div data-i18n="Analytics">MANAGE EXPENSE</div>
+              
+              <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+              &nbsp;<div data-i18n="Analytics">MANAGE EXPENSE</div>
             </a>
           </li>
 
@@ -199,7 +221,7 @@
           <li class="menu-item active">
            <a href="{% url 'chart' %}" class="menu-link"> 
               
-            &nbsp; <i class='bx bxs-bar-chart-alt-2'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp; <i class='bx bxs-bar-chart-alt-2'></i>&nbsp;&nbsp;&nbsp;
             <div data-i18n="Analytics">CHARTS</div>
             
             </a>
@@ -208,8 +230,9 @@
           <li class="menu-item active">
             <a href="{% url 'receipt' %}" class="menu-link">
               {% comment %} <i class="menu-icon tf-icons bx bx-home-circle"></i> {% endcomment %}
-              <i class="wallet-alt"></i>
+              {% comment %} <i class="wallet-alt"></i> {% endcomment %}
               {% comment %} <box-icon name='wallet-alt'></box-icon> {% endcomment %}
+              {% comment %} <i class="menu-icon tf-icons bx bx-detail"></i> {% endcomment %}
               <i class="menu-icon tf-icons bx bx-detail"></i>
               <div data-i18n="Analytics">RECEIPT</div>
             </a>
@@ -217,29 +240,32 @@
 
           <li class="menu-item active">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-             <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-             <div data-i18n="Authentications">PROFILE PAGE</div>  
-             
-           </a> 
-           <ul class="menu-sub">
-             <li class="menu-item">
-               <a href="{% url 'login' %}" class="menu-link" target="_blank">
-                 <div data-i18n="Basic">Login</div>
-               </a>
-             </li>
-             <li class="menu-item">
-               <a href="{% url 'userregister' %}" class="menu-link" target="_blank">
-                 <div data-i18n="Basic">Register</div>
-               </a>
-             </li>
-             {% comment %} <li class="menu-item">
-               <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                 <div data-i18n="Basic">Forgot Password</div>
-               </a>
-             </li> {% endcomment %}
-           </ul>
-         </li> 
-
+                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                <div data-i18n="Authentications">PROFILE PAGE</div>
+            </a>
+            <div class="mb-3"></div>
+            <ul class="menu-sub">
+              <li class="menu-item ps-0">
+                <a href="{% url 'userregister' %}" class="menu-link btn btn-primary" style="display: flex; justify-content: center; align-items: center;">
+                    Register
+                </a>
+            </li>
+            <div class="mb-3"></div>
+            
+                <li class="menu-item">
+                    <a href="{% url 'login' %}" class="menu-link btn btn-success" style="display: flex; justify-content: center; align-items: center;">
+                        Login
+                    </a>
+                </li>
+                <div class="mb-3"></div>
+                <li class="menu-item">
+                    <a href="{% url 'login' %}" class="menu-link btn btn-danger" style="display: flex; justify-content: center; align-items: center;">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </li>
+        
 
 
           {% comment %} <li class="menu-item active">

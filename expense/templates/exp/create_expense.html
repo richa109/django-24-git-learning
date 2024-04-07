@@ -15,11 +15,13 @@
             <small class="text-muted float-end"></small>
           </div>
           <div class="card-body">
-            <form method="POST">
+    </script>
+            <form method="POST" enctype="multipart/form-data" >
                 {% csrf_token %}
               <div class="mb-3">
-                 <label class="form-label" for="basic-icon-default-fullname">Create Expense</label> 
-                {{request.user}}
+    </script>
+                 <label class="form-label" for="basic-icon-default-fullname ">Create Expense</label> 
+                {{request.user | upper}}
                  {{form.category | as_crispy_field}}   
                  {{form.subCategory | as_crispy_field}}
                  <div class="mb-2"> 
@@ -32,6 +34,8 @@
                  {{form.status | as_crispy_field}}  
                  {{form.description| as_crispy_field}}  
                  {{form.goal | as_crispy_field}}
+                 <div class="mb-3"></div>
+                 {{form.file | as_crispy_field}}
               </div>
               <input type="submit" class="btn btn-primary" value="Submit"/>
             </form>

@@ -43,6 +43,8 @@ class Expense(models.Model):
     status = models.CharField(choices=status, max_length=30)
     description = models.CharField(max_length=100)
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE, null=True)
+    file = models.FileField(upload_to = 'uploads/' , null=True , blank=True)
+    
     
     class Meta:
         db_table = 'Expense'

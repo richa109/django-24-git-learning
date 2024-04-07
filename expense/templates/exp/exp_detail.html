@@ -195,39 +195,41 @@ crispy_forms_tags %} {% endcomment %}
                 <img class="card-img-top" src="{% static './assets/img/elements/transportation3.jpg' %}" alt="Card image cap" />
                 <div class="card-body text-center">
                   <h5 class="card-title">User Details</h5>
-                  <p class="card-text">NAME:- {{exp_detail.user}}</p> 
+                  <p class="card-text">NAME:- {{exp_detail.user |upper}}</p> 
                   <p class="card-text">SALARY:-  {{user.salary}}</p> 
                   <p class="card-text">AGE:-  {{user.age}}</p> 
-                  <p class="card-text">AMOUNT:-  {{exp_detail.amount}}</p> 
+                  <p class="card-text">AMOUNT:-  {{exp_detail.amount}}</p> <br>
+                  <p class="card-text"> <a href="{% url 'receipt' %}" class="btn btn-outline-primary">User's Expense receipt</a> </p>
+
           
           
                   {% comment %} <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a> {% endcomment %}
                 </div>
               </div>
-            </div>
+            </div> 
 
-            <div class="col-md-6 col-lg-4 mb-3">
-           
-              <img class="card-img-top" src="{% static './assets/img/elements/loan.jpg' %}" alt="Card image cap" /> 
-               <div class="card-body">
-               
-                 
-               </div>
-            
-           </div>
+            <div class="col-md-6 col-lg-4 mb-3" style="margin-top: 125px;"> 
+              <img class="card-img-top" src="{% static './assets/img/elements/ME.jpg' %}" alt="Card image cap" style="width: 400px; height: auto; margin-left: -23px;" />
+              <div class="card-body">
+                  <!-- Card body content here -->
+              </div>
+          </div>
+          
+          
 
-            <div class="col-md-6 col-lg-4 mb-3">
+  
+          <div class="col-md-6 col-lg-4 mb-3">
               <div class="card h-100">
                 <img class="card-img-top" src="{% static './assets/img/elements/doctor.jpg' %}" alt="Card image cap" />
                 <div class="card-body text-center">
                   <h5 class="card-title">User's Expense Details</h5>
                   <p class="card-text">
-                    <p class="card-text"> HELLO {{exp_detail.user}} ....</p>
+                    <p class="card-text"> HELLO {{exp_detail.user |upper}} ....</p>
                     <p class="card-text"> TOTAL AMOUNT :- {{exp_detail.amount}}</p> 
-                    <p class="card-text">  CATEGORY :- {{exp_detail.category}}</p>
-                    <p class="card-text"> SUBCATEGORY  :- {{exp_detail.subCategory}} </p>
-                    <p class="card-text"> GOAL: {{ exp_detail.goal__goalname }} </p>
-                    <p class="card-text">  DESCRIPTION FOR EXPENSE:- {{exp_detail.description }} </p>
+                    <p class="card-text">  CATEGORY :- {{exp_detail.category | upper}}</p>
+                    <p class="card-text"> SUBCATEGORY  :- {{exp_detail.subCategory |upper}} </p>
+                    <p class="card-text"> GOAL: {{ exp_detail.goal__goalname | upper }} </p>
+                    <p class="card-text">  DESCRIPTION FOR EXPENSE:- {{exp_detail.description | upper }} </p>
                   </p>
                   <p class="card-text"> <a href="{% url 'exp_list' %}" class="btn btn-outline-primary">EXPENSE LIST</a> </p>
                   <p class="card-text">   <a href="{% url 'chart' %}" class="btn btn-outline-primary"> EXPENSE CHART</a> </p>

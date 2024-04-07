@@ -47,6 +47,8 @@ class AccountCreationForm(forms.ModelForm):
             'day': forms.DateInput(attrs={'type': 'date'}),
         }
         
-    # class PDFUploadForm(forms.Form):
-    #     pdf_file = forms.FileField()
-    
+# class UploadCreationForm(forms.ModelForm):
+#     class Meta:
+#         model= Expense
+#         fields ='__all__'
+        

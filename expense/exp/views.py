@@ -7,8 +7,10 @@ from .forms import *
 from .models import *
 from django.views.generic import ListView,DetailView
 from django.views.generic import DeleteView,UpdateView
-from django.utils.dateformat import DateFormat
+# from django.utils.dateformat import DateFormat
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.http import FileResponse
 
 # from .forms import PDFUploadForm
 # import PyPDF2
@@ -79,7 +81,7 @@ class ExpenseListView(ListView):
         user = request.user
         print(user)
         # list_exp1=Expense.objects.filter(user=user).values()
-        list_exp = Expense.objects.filter(user=user).values("id",'user', 'category','subCategory','amount','expDateTime','transaction_type','status','description','goal__goalname')
+        list_exp = Expense.objects.filter(user=user).values("id",'user', 'category','subCategory','amount','expDateTime','transaction_type','status','description','goal__goalname','file')
         print(list_exp)
         return render(request,'exp/list_exp.html',{'list_exp':list_exp})
     
@@ -203,28 +205,7 @@ class AccountDetailView(DetailView):
 
         return context
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        labels = []
-        data = []
-
-        # Query for expenses related to the authenticated user
-        queryset = Account.objects.filter(user=self.request.user).order_by('-day')[:10]
-        print("query set",queryset)
-
-        # Populate labels and data from queryset
-        for account in queryset:
-          labels.append(DateFormat(account.day).format('Y-m-d'))
-          data.append(account.income)
-
-        # Create context dictionary
-        context.update({
-            'labels': labels,
-            'data': data,
-        })
-
-        return context
-    
+   
     
 class AccountDeleteView(DeleteView):
     model = Account
@@ -235,28 +216,6 @@ class AccountDeleteView(DeleteView):
     # Import your Expense model here
 
 
-def bar_chart_account(request):
-    # Initialize empty lists for labels and data
-    labels = []
-    data = []
-
-    # Query for expenses
-    queryset = Account.objects.filter(user=request.user).order_by('-day')[:10]
-    print("q.....",queryset)
-
-    # Populate labels and data from queryset
-    for account in queryset:
-        labels.append(DateFormat(account.day).format('Y-m-d'))
-        data.append(account.income)
-
-    # Create context dictionary
-    context = {
-        'labels': labels,
-        'data': data,
-    }
-
-    # Render the template with the context data
-    return render(request, 'exp/detail_acc.html', context)
 
     
 def bar_chart_expense(request):
@@ -297,7 +256,22 @@ class ReceiptListView(ListView):
         print(receipt)
         return render(request,'exp/receipt.html',{'receipt':receipt})
     
+def open_file(request, expense_id):
+    expense = get_object_or_404(Expense, id=expense_id)
+    # Assuming your file field in Expense model is named 'file'
+    file_path = expense.file.path
+    return FileResponse(open(file_path, 'rb'), content_type='application/pdf/doc/html')  # Adjust content type as per your file type
+    
+    
+# class UploadListView(ListView):
+#     template_name = 'exp/receipt_list.html'
+#     model = Expense
+#     context_object_name = 'receipt_list'        
 
+
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
     
 # def convert_pdf(request):
 #     if request.method == 'POST':

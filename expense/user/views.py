@@ -9,18 +9,17 @@ from django.contrib.auth.views import LogoutView , LoginView
 # from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from exp.models import Expense
+from exp.models import Account
 from .models import User
 from .forms import UserRegistrationForm
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.utils.dateformat import DateFormat
+
 from django.conf import settings
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
-from django.contrib.auth import get_user_model
-from .forms import PasswordResetForm
+from django.contrib.auth.views import PasswordResetView
+
 
 # Your existing views...
 
@@ -131,58 +130,62 @@ class UserDashboardView(ListView):
         return render(request, 'user/user_dashboard.html', {'expenses': expense, 'expense1': expense1})
     
     def get(self, request, *args, **kwargs):
-        # def safe(request): 
-        
         if request.user.is_authenticated:
-            # expenses = Expense.objects.filter(payee__user=request.user).all()
-            # expense = Expense.objects.all().values()
+        # Calculate expense-related data
             expenses = Expense.objects.filter(user=request.user).all()
-            try:
-             user_income = sum(list(expenses.filter( transaction_type="income").values_list('amount', flat=True)))
-            except: 
-             user_income = 0
+        try:
+            user_income = sum(list(expenses.filter(transaction_type="income").values_list('amount', flat=True)))
+        except:
+            user_income = 0
             
-            try:
-             user_expenses = sum(list(expenses.filter( transaction_type="expense").values_list('amount', flat=True)))
-            except:
-             user_expenses = 0
+        try:
+            user_expenses = sum(list(expenses.filter(transaction_type="expense").values_list('amount', flat=True)))
+        except:
+            user_expenses = 0
             
-            try:
-             safe_amount = user_income - (user_expenses*10/100)
-            except: 
-             safe_amount = 0
-            
-            
-            #char logic here...
-            
-            labels = []
-            data = []
-            print("funcion called...")
-            # Query for expenses
-            queryset = Expense.objects.filter(user=request.user).order_by('-amount')[:10]
-            print("queryset ",queryset)
+        try:
+            safe_amount = user_income - (user_expenses * 10 / 100)
+        except:
+            safe_amount = 0
 
-    # Populate labels and data from queryset
-        for expense in queryset:
+        # Populate expense labels and data
+        labels = []
+        data = []
+        print("Expense function called...")
+
+        queryset_expense = Expense.objects.filter(user=request.user).order_by('-amount')[:10]
+        print("Expense queryset ", queryset_expense)
+
+        for expense in queryset_expense:
             labels.append(expense.category)
             data.append(expense.amount)
-        
-        #print("*"*80)
+
+        # Calculate account-related data
+        account_labels = []
+        account_data = []
+        print("Account function called...")
+
+        queryset_account = Account.objects.filter(user=request.user).order_by('-day')[:10]
+        print("Account queryset ", queryset_account)
+
+        for account in queryset_account:
+            account_labels.append(DateFormat(account.day).format('Y-m-d'))
+            account_data.append(account.income)
+
         print("user_income", user_income)
         print("user_expenses", user_expenses)
-        return render(request, 'user/user_dashboard.html', 
-            {
-        "expenses": expenses,
-        "user_income": user_income, 
-        "user_expenses": user_expenses, 
-        "safe_amount": user_income-user_expenses,
-        "data":data,
-        "labels":labels
-            
-            
+
+        return render(request, 'user/user_dashboard.html', {
+            "expenses": expenses,
+            "user_income": user_income,
+            "user_expenses": user_expenses,
+            "safe_amount": safe_amount,
+            "data": data,
+            "labels":labels,
+            "account_data": account_data,
+            "account_labels": account_labels
         })
-       
-    
+
 
     # def safe(request): 
     #     if request.user.is_authenticated:
@@ -314,4 +317,22 @@ def bar_chart_expense(request):
         "data": data,
         "labels": labels
     })
-
+    
+def bar_chart_account(request):
+    context = {}
+    accounts = Account.objects.filter(user=request.user)
+    labels = [account.day for account in accounts]
+    data = [account.income for account in accounts]
+    print(labels)
+    # context['labels'] = labels
+    # context['data'] = data
+    
+    return render(request, 'user/user_dashboard.html', {
+        "data": data,
+        "labels": labels
+    })
+    # Initialize empty lists for labels and data
+   
+    # Render the template with the context data
+   
+    

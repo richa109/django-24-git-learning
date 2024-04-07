@@ -15,7 +15,7 @@
     
     <div class="card">
       <h5 class="card-header">
-        {{ user.get_username }}!!! &nbsp; HERE IS YOUR EXPENSE LIST
+        {{ user.get_username | upper }}!!! &nbsp; HERE IS YOUR EXPENSE LIST
       </h5>
 
       <h5 class="card-header">
@@ -33,28 +33,36 @@
               <th>Transaction</th>
               <th>Description</th>
               
-              <th>Status</th>
+              <th class="text-center">Status</th>
               <th>Goal</th>
+              <th class="text-center">File_Uploaded</th>
               <th class='text-center'>Actions</th>
+              
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
             {% for expense in list_exp %}
             <tr>
             
-              <td>{{ expense.category }}</td>
-              <td>{{ expense.subCategory }}</td>
-              <td>{{ expense.amount }}</td>
-              <td>{{ expense.expDateTime }}</td>
-              <td>{{ expense.transaction_type }}</td>
-              <td>{{ expense.description }}</td>
-              <td>
-                <span class="badge bg-label-primary me-1"
-                  >{{ expense.status }}</span
-                >
+              <td class="text-center">{{ expense.category }}</td>
+              <td class="text-center">{{ expense.subCategory }}</td>
+              <td class="text-center">{{ expense.amount }}</td>
+              <td class="text-center">{{ expense.expDateTime }}</td>
+              <td class="text-center">{{ expense.transaction_type }}</td>
+              <td class="text-center">{{ expense.description }}</td>
+              <td class="text-center">
+                  <span class="badge bg-label-primary me-1">{{ expense.status }}</span>
               </td>
-              <td>{{expense.goal__goalname}}</td>
+              <td class="text-center">{{ expense.goal__goalname }}</td>
+              <td class="text-center">
+                  {% if expense.file %}
+                      <a href="{% url 'open_file' expense.id %}" target="_blank">{{ expense.file }}</a>
+                  {% else %}
+                      No file selected
+                  {% endif %}
+              </td>
 
+            
              
               <td>
                 <div class="dropdown">

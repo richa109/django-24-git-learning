@@ -295,11 +295,9 @@ block content %} {% endcomment %}
                   <span>Create an account</span>
                 </a>
               </p>
-              {% comment %} <p class="text-center">
-                <a href="{% url 'forgot' %}">
-                  <span>Forgot Password </span>
-                </a>
-              </p> {% endcomment %}
+              {% comment %} <p><a href="{% url "password_reset" %}"> <span>Forgot Password</span></a></p> {% endcomment %}
+            
+
             </div>
           </div>
           <!-- /Register -->
